@@ -23,6 +23,17 @@ pub fn three_consecutive_vowels(sentence_string: &str) -> bool {
     false
 }
 
+pub fn say_hello(name: &str) -> String {
+    // We could construct the result string manually.
+    // let mut result = "Hello ".to_owned();
+    // result.push_str(name);
+    // result.push('!');
+    // result
+
+    // But using format! is better.
+    format!("Hello {}!", name)
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -47,6 +58,14 @@ mod test {
         let borrowed = "Once upon a time, there was a friendly curious crab named Ferris";
 
         assert_eq!(three_consecutive_vowels(borrowed), true);
+
+    }
+
+    #[test]
+    fn saludo() {
+        let borrowed = "Ferris";
+
+        assert_eq!(say_hello(borrowed), "Hello Ferris!");        
 
     }
 }

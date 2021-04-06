@@ -1,1 +1,1 @@
-pub mod three_vowels;
+pub mod str_guidelines;
