@@ -1,4 +1,5 @@
 pub fn three_vowels(word: &str) -> bool {
+    // use &str for params
     let mut vowel_count = 0;
     for c in word.chars() {
         match c {
@@ -15,6 +16,7 @@ pub fn three_vowels(word: &str) -> bool {
 }
 
 pub fn three_consecutive_vowels(sentence_string: &str) -> bool {
+    // use &str for params
     for word in sentence_string.split(' ') {
         if three_vowels(word) {
             return true;
