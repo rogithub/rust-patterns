@@ -10,8 +10,8 @@ pub enum MyEnum {
 impl core::fmt::Debug for MyEnum {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            MyEnum::A { name, .. } => f.debug_struct("A").field("name", name).finish(),
-            MyEnum::B { name, .. } => f.debug_struct("B").field("name", name).finish()
+            MyEnum::A { name, x } => f.debug_struct("A").field("name", name).field("x", x).finish(),
+            MyEnum::B { name } => f.debug_struct("B").field("name", name).finish()
         }        
     }
 }
