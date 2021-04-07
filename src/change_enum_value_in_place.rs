@@ -10,8 +10,8 @@ pub enum MyEnum {
 impl core::fmt::Debug for MyEnum {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {
-            MyEnum::A { .. } => f.debug_struct("A").finish(),
-            MyEnum::B { .. } => f.debug_struct("B").finish()
+            MyEnum::A { name, .. } => f.debug_struct("A").field("name", name).finish(),
+            MyEnum::B { name, .. } => f.debug_struct("B").field("name", name).finish()
         }        
     }
 }
@@ -45,6 +45,6 @@ mod test {
 
         a_to_b(&mut a);
 
-        assert_eq!(format!("{:?}", a), "B");
+        assert_eq!(format!("{:?}", a), "B { name: \"Rodrigo\" }");
     }
 }
