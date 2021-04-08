@@ -41,4 +41,18 @@ mod test {
         // possible to use s1 variable because wasn't borrowed in fn call above.
         assert_eq!(s1, "hello, world!");
     }
+
+    #[test]
+    fn one_mut_ref_max_per_scopre() {
+        let mut s = String::from("hello");
+        let r1 = &s;
+        let r2 = &s;
+
+        assert_eq!(r1, "hello");
+        assert_eq!(r2, "hello");
+        // r1 and r2 are not longer used after this point (moved);
+        let _r3 = &mut s;
+        s.push_str(", world!");
+        assert_eq!(s, "hello, world!");
+    }
 }
