@@ -47,6 +47,7 @@ mod test {
         let mut s = String::from("hello");
         let r1 = &s;
         let r2 = &s;
+        //let _r3 = &mut s; // cannot borrow s as mutable (here) because is already borrowed as immutable.
         assert_eq!(r1, "hello");
         assert_eq!(r2, "hello");
         // r1 and r2 are not longer used after this point (moved);
