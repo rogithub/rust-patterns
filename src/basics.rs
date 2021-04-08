@@ -65,4 +65,13 @@ mod test {
         assert_eq!(5, x);
         assert_eq!(5, *y);
     }
+
+    #[test]
+    fn box_implementing_deref_trait() {
+        let x = 5;
+        let y = Box::new(x);
+
+        assert_eq!(5, x);
+        assert_eq!(5, *y);
+    }
 }
