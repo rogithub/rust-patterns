@@ -56,4 +56,13 @@ mod test {
         s.push_str(", world!");
         assert_eq!(s, "hello, world!");
     }
+
+    #[test]
+    fn deref_test_following_ptr_to_the_value() {
+        let x = 5;
+        let y = &x;
+
+        assert_eq!(5, x);
+        assert_eq!(5, *y);
+    }
 }
