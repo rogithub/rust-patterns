@@ -7,6 +7,10 @@ pub fn calculate_length_without_borrowing(s: &String) -> usize {
     s.len()
 }
 
+pub fn change(s: &mut String) {
+    s.push_str(", world!");
+}
+
 #[cfg(test)]
 mod test {
     use super::*;
@@ -26,5 +30,15 @@ mod test {
         // possible to use s1 variable because wasn't borrowed in fn call above.
         assert_eq!(s1, "hello");
         assert_eq!(len, 5);
+    }
+
+    #[test]
+    fn referencia_mutable_test() {
+        let mut s1 = String::from("hello");
+        // Passing a ref mut to the function, so it does not takes ownership of s1 variable
+        // and also can change it internally
+        change(&mut s1);
+        // possible to use s1 variable because wasn't borrowed in fn call above.
+        assert_eq!(s1, "hello, world!");
     }
 }
