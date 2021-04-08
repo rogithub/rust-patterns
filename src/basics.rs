@@ -47,10 +47,10 @@ mod test {
         let mut s = String::from("hello");
         let r1 = &s;
         let r2 = &s;
-
         assert_eq!(r1, "hello");
         assert_eq!(r2, "hello");
         // r1 and r2 are not longer used after this point (moved);
+        // so it is ok (no error) to create a mut ref bellow
         let _r3 = &mut s;
         s.push_str(", world!");
         assert_eq!(s, "hello, world!");
