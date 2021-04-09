@@ -9,7 +9,7 @@
 use std::time::{Duration, Instant};
 
 pub struct Timer<'a> {
-    pub elapsed: &'a mut Option<Duration>,
+    elapsed: &'a mut Option<Duration>,
     start: Instant,
 }
 
