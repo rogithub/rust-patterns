@@ -3,7 +3,7 @@ pub fn calculate_length_borrowing(s: String) -> (String, usize) {
     (s, length)
 }
 
-pub fn calculate_length_without_borrowing(s: &String) -> usize {
+pub fn calculate_length_without_borrowing(s: &str) -> usize {
     s.len()
 }
 

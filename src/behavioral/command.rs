@@ -31,6 +31,9 @@ impl Schema {
     pub fn new() -> Self {
         Self { commands: vec![] }
     }
+    pub fn default() -> Self {
+        Self::new()
+    }
 
     pub fn add_migration(&mut self, cmd: Box<dyn Migration>) {
         self.commands.push(cmd);
