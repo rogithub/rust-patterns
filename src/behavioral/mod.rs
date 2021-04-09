@@ -4,3 +4,4 @@ pub mod command_trait_objects;
 pub mod interpreter;
 pub mod interpreter_euclidean_length;
 pub mod new_type;
+pub mod raii_guards;
