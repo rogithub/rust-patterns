@@ -36,6 +36,7 @@ mod test {
     fn new_type_testing() {
         let one_thousand: u64 = 1000;
         let mut elapsed: Option<Duration> = None;
+
         {
             let _timer = Timer::new(&mut elapsed);
             let one_sec = Duration::from_millis(one_thousand);
