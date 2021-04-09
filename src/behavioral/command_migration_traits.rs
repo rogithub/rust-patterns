@@ -1,3 +1,6 @@
+// You have to write a Migration struct
+// for each Command
+
 pub trait Migration {
     fn execute(&self) -> &str;
     fn rollback(&self) -> &str;
@@ -24,21 +27,22 @@ impl Migration for AddField {
 }
 
 pub struct Schema {
-    pub commands: Vec<Box<dyn Migration>>,
+    commands: Vec<Box<dyn Migration>>,
+}
+
+impl Default for Schema {
+    fn default() -> Self {
+        Schema::new()
+    }
 }
 
 impl Schema {
     pub fn new() -> Self {
         Self { commands: vec![] }
     }
-    pub fn default() -> Self {
-        Self::new()
-    }
-
     pub fn add_migration(&mut self, cmd: Box<dyn Migration>) {
         self.commands.push(cmd);
     }
-
     pub fn execute(&self) -> Vec<&str> {
         self.commands.iter().map(|cmd| cmd.execute()).collect()
     }
