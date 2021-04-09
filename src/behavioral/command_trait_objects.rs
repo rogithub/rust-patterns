@@ -9,6 +9,12 @@ pub struct Schema<'a> {
     rollbacks: Vec<Migration<'a>>,
 }
 
+impl<'a> Default for Schema<'a> {
+    fn default() -> Self {
+        Schema::new()
+    }
+}
+
 impl<'a> Schema<'a> {
     pub fn new() -> Self {
         Self {
