@@ -9,15 +9,13 @@
 use std::time::{Duration, Instant};
 
 pub struct Timer<'a> {
-    pub name: &'a str,
     pub elapsed: &'a mut Option<Duration>,
     start: Instant,
 }
 
 impl<'a> Timer<'a> {
-    pub fn new(name: &'a str, duration: &'a mut Option<Duration>) -> Timer<'a> {
+    pub fn new(duration: &'a mut Option<Duration>) -> Timer<'a> {
         Timer {
-            name,
             start: Instant::now(),
             elapsed: duration,
         }
@@ -39,7 +37,7 @@ mod test {
         let one_thousand: u64 = 1000;
         let mut elapsed: Option<Duration> = None;
         {
-            let _timer = Timer::new("testing", &mut elapsed);
+            let _timer = Timer::new(&mut elapsed);
             let one_sec = Duration::from_millis(one_thousand);
             std::thread::sleep(one_sec);
         }
