@@ -33,7 +33,7 @@ mod test {
     use super::*;
 
     #[test]
-    fn new_type_testing() {
+    fn raii_ward_testing() {
         let one_thousand: u64 = 1000;
         let mut elapsed: Option<Duration> = None;
 
