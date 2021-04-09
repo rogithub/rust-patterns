@@ -1,5 +1,6 @@
 // You have to write 2 fn
 // for each Command
+// fn pointers implement all three traits Fn, FnMut, and FnOnce
 
 type FnPtr = fn() -> String;
 pub struct Command {
