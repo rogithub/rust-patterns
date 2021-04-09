@@ -36,15 +36,16 @@ mod test {
 
     #[test]
     fn new_type_testing() {
+        let one_thousand: u64 = 1000;
         let mut elapsed: Option<Duration> = None;
         {
             let _timer = Timer::new("testing", &mut elapsed);
-            let one_sec = Duration::from_millis(1000);
+            let one_sec = Duration::from_millis(one_thousand);
             std::thread::sleep(one_sec);
         }
 
         let duration = elapsed.unwrap();
 
-        assert_eq!(duration.as_secs(), 1);
+        assert_eq!(duration.as_millis(), one_thousand as u128);
     }
 }
