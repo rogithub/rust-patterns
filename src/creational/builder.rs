@@ -41,6 +41,18 @@ impl FooBuilder {
     }
 }
 
+// The example takes and returns the builder by value. It is often more ergonomic
+// (and more efficient) to take and return the builder as a mutable reference.
+// The borrow checker makes this work naturally.
+// This approach has the advantage that one can write code like
+
+// let mut fb = FooBuilder::new();
+// fb.a();
+// fb.b();
+// let f = fb.build();
+
+// as well as the FooBuilder::new().a().b().build() style.
+
 #[cfg(test)]
 mod test {
     use super::*;
