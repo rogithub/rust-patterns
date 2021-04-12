@@ -1,6 +1,6 @@
-// The visitor pattern is useful anywhere that you want to apply an algorithm to 
-// heterogeneous data. If data is homogeneous, you can use an iterator-like pattern. 
-// Using a visitor object (rather than a functional approach) allows the visitor to 
+// The visitor pattern is useful anywhere that you want to apply an algorithm to
+// heterogeneous data. If data is homogeneous, you can use an iterator-like pattern.
+// Using a visitor object (rather than a functional approach) allows the visitor to
 // be stateful and thus communicate information between nodes.
 
 // The data we will visit
@@ -11,7 +11,7 @@ mod ast {
     }
 
     pub struct Name {
-        value: String,
+        pub value: String,
     }
 
     pub enum Expr {
@@ -23,7 +23,7 @@ mod ast {
 
 // The abstract visitor
 mod visit {
-    use ast::*;
+    use super::*;
 
     pub trait Visitor<T> {
         fn visit_name(&mut self, n: &Name) -> T;
@@ -32,13 +32,16 @@ mod visit {
     }
 }
 
-use visit::*;
 use ast::*;
+use visit::*;
 
 // An example concrete implementation - walks the AST interpreting it as code.
 struct Interpreter;
 impl Visitor<i64> for Interpreter {
-    fn visit_name(&mut self, n: &Name) -> i64 { panic!() }
+    fn visit_name(&mut self, n: &Name) -> i64 {
+        let l = n.value.len() as i64;
+        l
+    }
     fn visit_stmt(&mut self, s: &Stmt) -> i64 {
         match *s {
             Stmt::Expr(ref e) => self.visit_expr(e),
@@ -55,9 +58,9 @@ impl Visitor<i64> for Interpreter {
     }
 }
 
-pub fn walk_expr(visitor: &mut Visitor, e: &Expr) {
+pub fn walk_expr(visitor: &mut dyn Visitor<i64>, e: &Expr) {
     match *e {
-        Expr::IntLit(_) => {},
+        Expr::IntLit(_) => {}
         Expr::Add(ref lhs, ref rhs) => {
             visitor.visit_expr(lhs);
             visitor.visit_expr(rhs);
@@ -69,17 +72,14 @@ pub fn walk_expr(visitor: &mut Visitor, e: &Expr) {
     }
 }
 
-
-
 #[cfg(test)]
 mod test {
     use super::*;
 
     #[test]
     fn visitor_testing() {
-        let visitor = Interpreter;
+        let mut visitor = Interpreter;
         let e = Expr::IntLit(1);
-        walk_expr(mut visitor, e);
+        assert_eq!(1, visitor.visit_expr(&e));
     }
 }
-
